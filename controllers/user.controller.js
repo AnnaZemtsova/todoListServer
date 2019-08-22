@@ -14,8 +14,12 @@ const createUser = async (ctx) => {
  const findUser = async ctx => {
      try{
          const user = await User.findByCredentials(ctx.body.email, ctx.body.password);
-         const token = await  user.generateAuthToken();
-         ctx.res.send(token);
+         if(user) {
+             const token = await user.generateAuthToken();
+             ctx.res.send(token);
+         }else {
+             ctx.res.status(400).send();
+         }
      }catch(e){
          ctx.res.status(400).send();
      }

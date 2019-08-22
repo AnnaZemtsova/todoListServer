@@ -1,9 +1,12 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const usersRouter = require('../routes/users');
+const todoListRouter = require('../routes/todoList');
 
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
-});
+const router = (privateRouter, publicRouter) => {
+  publicRouter.use('/users', usersRouter);
+  privateRouter.use('/todoList', todoListRouter);
+};
 
-module.exports = router;
+module.exports = {
+  router: router
+};
