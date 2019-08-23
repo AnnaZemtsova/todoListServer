@@ -26,8 +26,8 @@ const TodoList = require('../models/todoList');
 
 const updateTodo = async ctx => {
     try{
-       let todo =  await TodoList.findOneAndUpdate({idUser: ctx.body.idUser},
-            ctx.body);
+        await TodoList.findOneAndUpdate({_id: ctx.body.idTodo}, ctx.body);
+        let todo =  await TodoList.findOne({_id: ctx.body.idTodo});
         ctx.res.status(200).send(todo);
     }catch(e){
         ctx.res.status(400).send();
@@ -38,9 +38,9 @@ const updateTodo = async ctx => {
 const deleteTodo = async ctx => {
     try{
         let todo =  await TodoList.findOne({_id: ctx.query.idTodo});
-        let idUser = todo.idUser;
+        let idTodo = todo._id;
         await TodoList.findOneAndDelete({_id: ctx.query.idTodo});
-        ctx.res.status(200).send(idUser);
+        ctx.res.status(200).send(idTodo);
     }catch(e){
         ctx.res.status(400).send();
     }
