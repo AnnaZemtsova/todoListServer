@@ -8,8 +8,23 @@ const middleware = require('./middleware/authRoute');
 const indexRouter = require('./routes/index');
 cors = require('cors');
 
-const app = express();
-app.use(express.json());
+//-------------Work with postgres-------------------------------
+
+// require('./db/postgre');
+// const userDb = require('./postgres/user.db');
+// const todoDb = require('./postgres/todos.db');
+
+//postrgres.addUser({name: 'Lida', email:'lida@gmail.com', password: '1111'});
+//postrgres.getUsers();
+// todoDb.addTodo({idUser: 2, todo: 'newTodo'});
+//todoDb.getTodosByUserId(2);
+//todoDb.updateTodoById(4, 'aaa to do!');
+//todoDb.deleteTodoById(7);
+
+//----------------------------------------------------------------
+
+ const app = express();
+ app.use(express.json());
 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');

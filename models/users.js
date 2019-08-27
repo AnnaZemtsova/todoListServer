@@ -14,13 +14,18 @@ const userSchema = new mongoose.Schema({
     email: {
         type: String,
         required: true
+    },
+    _id: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'TodoList'
     }
+
 });
-userSchema.virtual('todoList', {
-    ref: 'TodoList',
-    localField: '_id',
-    foreignField: 'idUser'
-});
+// userSchema.virtual('todoList', {
+//     ref: 'TodoList',
+//     localField: '_id',
+//     foreignField: 'idUser'
+// });
 
 
 userSchema.methods.generateAuthToken = async function () {
